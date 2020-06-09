@@ -170,6 +170,18 @@ const CalculatorScreen = ({ route, navigation }) => {
     });
   }, []);
 
+  FlatListItemSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: '100%',
+          backgroundColor: '#000',
+        }}
+      />
+    );
+  };
+  
   const renderWeather = (weather) => {
     if (weather.icon === '') {
       return <View></View>;
@@ -190,6 +202,7 @@ const CalculatorScreen = ({ route, navigation }) => {
       );
     }
   };
+
  
   navigation.setOptions({
     headerLeft: () => (
@@ -270,6 +283,7 @@ const CalculatorScreen = ({ route, navigation }) => {
               doCalculation(distanceUnits, bearingUnits);
               <FlatList
               renderItem={renderWeather}
+              ItemSeparatorComponent={FlatListItemSeparator}
               />
               
             }}
