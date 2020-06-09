@@ -160,38 +160,7 @@ const CalculatorScreen = ({ route, navigation }) => {
       ...vals,
     });
   };
-  
-  const [weather, setWeather] = useState([]);
 
-  useEffect(() => {
-    getWeather((data) => {
-      console.log('received: ', data);
-      setWeather(data.items);
-    });
-  }, []);
-
-  const renderWeather = (weather) => {
-    if (weather.icon === '') {
-      return <View></View>;
-    } else {
-      return (
-        <View style={styles.weatherView}>
-          <Image
-            style={{ width: 100, height: 100 }}
-            source={ICONS['img' + weather.icon]}
-          />
-          <View>
-            <Text style={{ fontSize: 56, fontWeight: 'bold' }}>
-              {round(weather.temperature,0)}
-            </Text>
-            <Text> {weather.description} </Text>
-          </View>
-        </View>
-      );
-    }
-  };
-
- 
   navigation.setOptions({
     headerLeft: () => (
       <TouchableOpacity
@@ -304,13 +273,6 @@ const CalculatorScreen = ({ route, navigation }) => {
             <Text style={styles.resultsValueText}>{state.bearing}</Text>
           </View>
         </View>
-        <FlatList
-              data={weather}
-              
-              //this is not right look at the documentation and the history screen for a working version of flatlist
-              renderItem={renderWeather}
-
-              />
       </View>
     </TouchableWithoutFeedback>
   );
