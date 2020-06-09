@@ -23,7 +23,7 @@ const WeatherServer = axios.create({
 
 export const getWeather = async (callback) => {
     const response = await WeatherServer.get(
-        `lat=${item.p2.lat}&lon=${item.p2.lon}&appid=${WKey}`
+        `lat=${item.lat}&lon=${item.lon}&appid=${WKey}`
     )
 };
 
