@@ -170,18 +170,6 @@ const CalculatorScreen = ({ route, navigation }) => {
     });
   }, []);
 
-  FlatListItemSeparator = () => {
-    return (
-      <View
-        style={{
-          height: 1,
-          width: '100%',
-          backgroundColor: '#000',
-        }}
-      />
-    );
-  };
-  
   const renderWeather = (weather) => {
     if (weather.icon === '') {
       return <View></View>;
@@ -282,8 +270,9 @@ const CalculatorScreen = ({ route, navigation }) => {
             onPress={() => {
               doCalculation(distanceUnits, bearingUnits);
               <FlatList
+              data={weather}
               renderItem={renderWeather}
-              ItemSeparatorComponent={FlatListItemSeparator}
+
               />
               
             }}
