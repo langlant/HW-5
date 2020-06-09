@@ -2,7 +2,7 @@ import axios from 'axios';
 import {WKey} from './WeatherKey';
 
 const WeatherServer = axios.create({
-    baseURL: 'api.openweathermap.org',
+    baseURL: 'api.openweathermap.org/data/2.5/weather?',
 });
 
 /*WeatherServer.interceptors.request.use(
@@ -23,7 +23,7 @@ const WeatherServer = axios.create({
 
 export const getWeather = async (callback) => {
     const response = await WeatherServer.get(
-        'api.openweathermap.org/data/2.5/weather?lat=${item.p2.lat}&lon=${item.p2.lon}&appid=${WKey}'
+        `=${item.p2.lat}&lon=${item.p2.lon}&appid=${WKey}`
     )
 };
 

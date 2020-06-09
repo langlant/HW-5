@@ -218,8 +218,18 @@ const CalculatorScreen = ({ route, navigation }) => {
       </TouchableOpacity>
     ),
   });
-
-
+/*
+  FlatListItemSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: '100%',
+          backgroundColor: '#000',
+        }}
+      />
+    );
+  };*/
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -302,6 +312,22 @@ const CalculatorScreen = ({ route, navigation }) => {
             <Text style={styles.resultsValueText}>{state.bearing}</Text>
           </View>
         </View>
+        <FlatList
+      style={styles.screen}
+      keyExtractor={item => `${item.id}`}
+      data={weather}
+      //ItemSeparatorComponent={FlatListItemSeparator}
+      extraData={weather}
+      renderItem={renderWeather}
+      />
+      <FlatList
+      style={styles.screen}
+      keyExtractor={item => `${item.id}`}
+      data={weather}
+     //ItemSeparatorComponent={FlatListItemSeparator}
+     extraData={weather}
+      renderItem={renderWeather}
+      />
       </View>
     </TouchableWithoutFeedback>
   );
