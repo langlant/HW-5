@@ -4,6 +4,7 @@ import { Button, Input } from "react-native-elements";
 import { Feather } from "@expo/vector-icons";
 import { storeHistoryItem, setupHistoryListener, initHistoryDB } from '../helpers/fb-history';
 import { getWeather } from "../api/WeatherServer";
+import { FlatList } from "react-native-gesture-handler";
 
 const ICONS = {
   img01d: require('../assets/img01d.png'),
@@ -267,7 +268,9 @@ const CalculatorScreen = ({ route, navigation }) => {
             title="Calculate"
             onPress={() => {
               doCalculation(distanceUnits, bearingUnits);
-              renderItem={renderWeather};
+              <FlatList
+              renderItem={renderWeather}
+              />
               
             }}
           />
