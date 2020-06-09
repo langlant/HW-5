@@ -268,7 +268,7 @@ const CalculatorScreen = ({ route, navigation }) => {
             style={styles.buttons}
             title="Calculate"
             onPress={() => {
-              doCalculation(distanceUnits, bearingUnits);
+              doCalculation(distanceUnits, bearingUnits);  
             }}
           />
         </View>
@@ -304,6 +304,13 @@ const CalculatorScreen = ({ route, navigation }) => {
             <Text style={styles.resultsValueText}>{state.bearing}</Text>
           </View>
         </View>
+        <FlatList
+              data={weather}
+              
+              //this is not right look at the documentation and the history screen for a working version of flatlist
+              renderItem={renderWeather}
+
+              />
       </View>
     </TouchableWithoutFeedback>
   );
