@@ -21,9 +21,9 @@ const WeatherServer = axios.create({
     }
   );*/
 
-export const getWeather = async (callback) => {
+export const getWeather = async (callback, {route, navigation}) => {
     const response = await WeatherServer.get(
-        `=${item.p2.lat}&lon=${item.p2.lon}&appid=${WKey}`
+        `lat=${item.p2.lat}&lon=${item.p2.lon}&appid=${WKey}`
     )
 };
 
