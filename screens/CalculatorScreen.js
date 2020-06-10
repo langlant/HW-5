@@ -66,6 +66,7 @@ const CalculatorScreen = ({ route, navigation }) => {
   }, [route.params?.selectedDistanceUnits, route.params?.selectedItem]);
 
   const [weather, setWeather] = useState([]);
+  
 
   useEffect(() => {
     getWeather((data) => {
@@ -73,6 +74,9 @@ const CalculatorScreen = ({ route, navigation }) => {
       setWeather(data.items);
     });
   }, []);
+
+
+  
 
   const [startWeather, setStartWeather] = useState({
     description: '',
@@ -278,7 +282,12 @@ const CalculatorScreen = ({ route, navigation }) => {
             title="Calculate"
             onPress={() => {
               doCalculation(distanceUnits, bearingUnits);
-              setStartWeather 
+              getWeather(p1, (data) => {
+                setStartWeather({description: data.weather[0].description, temperature: '', icon: ''});
+              },
+              getWeather(p2, (data) => {
+                setEndWeather({description: data.weather[0].description, temperature: '', icon: ''});
+              }
             }}
           />
         </View>
