@@ -74,6 +74,17 @@ const CalculatorScreen = ({ route, navigation }) => {
     });
   }, []);
 
+  const [startWeather, setStartWeather] = useState({
+    description: '',
+    icon: '',
+    temperature: ''
+  });
+
+  const [endWeather, setEndWeather] = useState({
+    description: '',
+    icon: '',
+    temperature: '',
+  });
   const renderWeather = (weather) => {
     if (weather.icon === '') {
       return <View></View>;
@@ -315,18 +326,11 @@ const CalculatorScreen = ({ route, navigation }) => {
             <Text style={styles.resultsValueText}>{state.bearing}</Text>
           </View>
         </View>
-        <Card
-          keyExtractor={item => `${item.id}`}
-          data={weather.p1}
-          extraData={weather}
-          renderItem={renderWeather}
-      />
-      <Card
-        keyExtractor={item => `${item.id}`}
-        data={weather.p2}
-        extraData={weather}
-        renderItem={renderWeather}
-      />
+        <View>
+          renderItem
+        </View>
+        {renderWeather(startWeather)}
+        {renderWeather(endWeather)}
       </View>
     </TouchableWithoutFeedback>
   );
