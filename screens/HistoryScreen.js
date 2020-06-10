@@ -5,7 +5,7 @@ import { StyleSheet, View, TouchableHighlight, Text, FlatList } from "react-nati
 const HistoryScreen = ({ route, navigation }) => {
   const { currentHistory } = route.params;
 
-  /*FlatListItemSeparator = () => {
+  FlatListItemSeparator = () => {
     return (
       <View
         style={{
@@ -15,7 +15,7 @@ const HistoryScreen = ({ route, navigation }) => {
         }}
       />
     );
-  };*/
+  };
 
   return (
     <FlatList

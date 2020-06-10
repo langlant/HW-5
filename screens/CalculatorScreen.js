@@ -1,6 +1,6 @@
 import React, { useState, useRef,   useEffect } from "react";
 import { StyleSheet, Text, Keyboard, TouchableOpacity, View, TouchableWithoutFeedback } from "react-native";
-import { Button, Input } from "react-native-elements";
+import { Button, Input, Card } from "react-native-elements";
 import { Feather } from "@expo/vector-icons";
 import { storeHistoryItem, setupHistoryListener, initHistoryDB } from '../helpers/fb-history';
 import { getWeather } from "../api/WeatherServer";
@@ -94,6 +94,7 @@ const CalculatorScreen = ({ route, navigation }) => {
       );
     }
   };
+
   // Converts from degrees to radians.
   function toRadians(degrees) {
     return (degrees * Math.PI) / 180;
@@ -276,7 +277,9 @@ const CalculatorScreen = ({ route, navigation }) => {
             style={styles.buttons}
             title="Calculate"
             onPress={() => {
-              doCalculation(distanceUnits, bearingUnits);  
+              doCalculation(distanceUnits, bearingUnits);
+              getWeather(weather.p1);
+              getWeather(weather.p2);  
             }}
           />
         </View>
@@ -312,21 +315,17 @@ const CalculatorScreen = ({ route, navigation }) => {
             <Text style={styles.resultsValueText}>{state.bearing}</Text>
           </View>
         </View>
-        <FlatList
-      style={styles.screen}
-      keyExtractor={item => `${item.id}`}
-      data={weather}
-      //ItemSeparatorComponent={FlatListItemSeparator}
-      extraData={weather}
-      renderItem={renderWeather}
+        <Card
+          keyExtractor={item => `${item.id}`}
+          data={weather.p1}
+          extraData={weather}
+          renderItem={renderWeather}
       />
-      <FlatList
-      style={styles.screen}
-      keyExtractor={item => `${item.id}`}
-      data={weather}
-     //ItemSeparatorComponent={FlatListItemSeparator}
-     extraData={weather}
-      renderItem={renderWeather}
+      <Card
+        keyExtractor={item => `${item.id}`}
+        data={weather.p2}
+        extraData={weather}
+        renderItem={renderWeather}
       />
       </View>
     </TouchableWithoutFeedback>
