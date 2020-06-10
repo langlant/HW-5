@@ -77,7 +77,7 @@ const CalculatorScreen = ({ route, navigation }) => {
   const [startWeather, setStartWeather] = useState({
     description: '',
     icon: '',
-    temperature: ''
+    temperature: '',
   });
 
   const [endWeather, setEndWeather] = useState({

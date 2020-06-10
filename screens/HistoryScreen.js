@@ -5,7 +5,7 @@ import { StyleSheet, View, TouchableHighlight, Text, FlatList } from "react-nati
 const HistoryScreen = ({ route, navigation }) => {
   const { currentHistory } = route.params;
 
-  FlatListItemSeparator = () => {
+ FlatListItemSeparator = () => {
     return (
       <View
         style={{
@@ -22,7 +22,7 @@ const HistoryScreen = ({ route, navigation }) => {
       style={styles.screen}
       keyExtractor={item => `${item.timestamp}`}
       data={currentHistory}
-      //ItemSeparatorComponent={FlatListItemSeparator}
+      ItemSeparatorComponent={FlatListItemSeparator}
       renderItem={({index, item}) => {
         var dt = Date(item.timestamp);
         return (
