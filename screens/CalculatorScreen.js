@@ -85,6 +85,7 @@ const CalculatorScreen = ({ route, navigation }) => {
     icon: '',
     temperature: '',
   });
+
   const renderWeather = (weather) => {
     if (weather.icon === '') {
       return <View></View>;
@@ -289,8 +290,7 @@ const CalculatorScreen = ({ route, navigation }) => {
             title="Calculate"
             onPress={() => {
               doCalculation(distanceUnits, bearingUnits);
-              getWeather(weather.p1);
-              getWeather(weather.p2);  
+              setStartWeather 
             }}
           />
         </View>
