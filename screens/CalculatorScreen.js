@@ -284,10 +284,10 @@ const CalculatorScreen = ({ route, navigation }) => {
               doCalculation(distanceUnits, bearingUnits);
               getWeather(p1, (data) => {
                 setStartWeather({description: data.weather[0].description, temperature: p1.temperature, icon: p1.icon});
-              },
+              }),
               getWeather(p2, (data) => {
-                setEndWeather({description: data.weather[0].description, temperature: p2.temperature, icon: p2.icon});
-              }
+                setEndWeather({description: data.weather[0].description, temperature: weather.temperature, icon: weather.icon});
+              })
             }}
           />
         </View>
