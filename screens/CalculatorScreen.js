@@ -275,10 +275,10 @@ const CalculatorScreen = ({ route, navigation }) => {
             onPress={() => {
               doCalculation(distanceUnits, bearingUnits);
               getWeather(p1, (data) => {
-                setStartWeather({description: data.weather[2], temperature: data.main.temp, icon: data.weather.icon});
+                setStartWeather({description: data.weather[2], temperature: data.main.temp, icon: data.weather[3].icon});
               }),
               getWeather(p2, (data) => {
-                setStartWeather({description: data.weather[2], temperature: data.main.temp, icon: data.weather.icon});
+                setStartWeather({description: data.weather[2], temperature: data.main.temp, icon: data.weather[3].icon});
               })
             }}
           />
