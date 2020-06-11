@@ -1,5 +1,5 @@
 import React, { useState, useRef,   useEffect } from "react";
-import { StyleSheet, Text, Keyboard, TouchableOpacity, View, TouchableWithoutFeedback } from "react-native";
+import { StyleSheet, Text, Keyboard, TouchableOpacity, View, TouchableWithoutFeedback, Image } from "react-native";
 import { Button, Input, Card } from "react-native-elements";
 import { Feather } from "@expo/vector-icons";
 import { storeHistoryItem, setupHistoryListener, initHistoryDB } from '../helpers/fb-history';
@@ -195,7 +195,12 @@ const CalculatorScreen = ({ route, navigation }) => {
       //   { p1, p2, dUnits, bUnits, timestamp: Date.now() },
       // ]);
       storeHistoryItem({ p1, p2, dUnits, bUnits, timestamp: Date.now() });
-
+      getWeather(p1, (data) => {
+        setStartWeather({description: data.weather[0].description, temperature: data.main.temp, icon: data.weather[0].icon});
+      }),
+      getWeather(p2, (data) => {
+        setEndWeather({description: data.weather[0].description, temperature: data.main.temp, icon: data.weather[0].icon});
+      })
     }
   }
 
@@ -274,12 +279,7 @@ const CalculatorScreen = ({ route, navigation }) => {
             title="Calculate"
             onPress={() => {
               doCalculation(distanceUnits, bearingUnits);
-              getWeather(p1, (data) => {
-                setStartWeather({description: data.weather[0].description, temperature: data.main.temp, icon: data.weather[0].icon});
-              }),
-              getWeather(p2, (data) => {
-                setEndWeather({description: data.weather[0].description, temperature: data.main.temp, icon: data.weather[0].icon});
-              })
+
             }}
           />
         </View>

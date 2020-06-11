@@ -25,7 +25,7 @@ export const getWeather = async (item, callback) => {
     const response = await WeatherServer.get(
         `?lat=${item.lat}&lon=${item.lon}&appid=${WKey}&units=imperial`
     ); 
-    callback(response,data)
+    callback(response.data)
 };
 
 export default WeatherServer;
