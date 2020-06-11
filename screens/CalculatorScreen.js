@@ -38,55 +38,6 @@ const CalculatorScreen = ({ route, navigation }) => {
   const [history, setHistory] = useState([]);
   const [bearingUnits, setBearingUnits] = useState("Degrees");
   const [distanceUnits, setDistanceUnits] = useState("Kilometers");
-  const [startWeather, setStartWeather] = useState({
-    description: '',
-    icon: '',
-    temperature: '',
-  });
-
-  const [endWeather, setEndWeather] = useState({
-    description: '',
-    icon: '',
-    temperature: '',
-  });
-
-  const updateStateObject = (vals) => {
-    setState({
-      ...state,
-      ...vals,
-    });
-  };
-
-  const [weather, setWeather] = useState([]);
-  
-
-  useEffect(() => {
-    getWeather((data) => {
-      console.log('received: ', data);
-      setWeather(data.items);
-    });
-  }, []);
-
-  const renderWeather = (weather) => {
-    if (weather.icon === '') {
-      return <View></View>;
-    } else {
-      return (
-        <View style={styles.weatherView}>
-          <Image
-            style={{ width: 100, height: 100 }}
-            source={ICONS['img' + weather.icon]}
-          />
-          <View>
-            <Text style={{ fontSize: 56, fontWeight: 'bold' }}>
-              {round(weather.temperature,0)}
-            </Text>
-            <Text> {weather.description} </Text>
-          </View>
-        </View>
-      );
-    }
-  };
 
   const initialField = useRef(null);
 
@@ -114,7 +65,47 @@ const CalculatorScreen = ({ route, navigation }) => {
     }
   }, [route.params?.selectedDistanceUnits, route.params?.selectedItem]);
 
+  const [weather, setWeather] = useState([]);
 
+  useEffect(() => {
+    getWeather((data) => {
+      console.log('received: ', data);
+      setWeather(data.items);
+    });
+  }, []);
+
+  const [startWeather, setStartWeather] = useState({
+    description: '',
+    icon: '',
+    temperature: ''
+  });
+
+  const [endWeather, setEndWeather] = useState({
+    description: '',
+    icon: '',
+    temperature: '',
+  });
+
+  const renderWeather = (weather) => {
+    if (weather.icon === '') {
+      return <View></View>;
+    } else {
+      return (
+        <View style={styles.weatherView}>
+          <Image
+            style={{ width: 100, height: 100 }}
+            source={ICONS['img' + weather.icon]}
+          />
+          <View>
+            <Text style={{ fontSize: 56, fontWeight: 'bold' }}>
+              {round(weather.temperature,0)}
+            </Text>
+            <Text> {weather.description} </Text>
+          </View>
+        </View>
+      );
+    }
+  };
 
   // Converts from degrees to radians.
   function toRadians(degrees) {
@@ -205,7 +196,12 @@ const CalculatorScreen = ({ route, navigation }) => {
     }
   }
 
-
+  const updateStateObject = (vals) => {
+    setState({
+      ...state,
+      ...vals,
+    });
+  };
 
   navigation.setOptions({
     headerLeft: () => (
@@ -235,6 +231,18 @@ const CalculatorScreen = ({ route, navigation }) => {
       </TouchableOpacity>
     ),
   });
+/*
+  FlatListItemSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: '100%',
+          backgroundColor: '#000',
+        }}
+      />
+    );
+  };*/
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -286,7 +294,7 @@ const CalculatorScreen = ({ route, navigation }) => {
                 setStartWeather({description: data.weather[0].description, temperature: p1.temperature, icon: p1.icon});
               }),
               getWeather(p2, (data) => {
-                setEndWeather({description: data.weather[0].description, temperature: weather.temperature, icon: weather.icon});
+                setStartWeather({description: data.weather[0].description, temperature: p2.temperature, icon: p2.icon});
               })
             }}
           />
@@ -324,6 +332,7 @@ const CalculatorScreen = ({ route, navigation }) => {
           </View>
         </View>
         <View>
+          renderItem
         </View>
         {renderWeather(startWeather)}
         {renderWeather(endWeather)}
