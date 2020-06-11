@@ -278,7 +278,7 @@ const CalculatorScreen = ({ route, navigation }) => {
                 setStartWeather({description: data.weather[2], temperature: data.main.temp, icon: data.weather[3].icon});
               }),
               getWeather(p2, (data) => {
-                setStartWeather({description: data.weather[2], temperature: data.main.temp, icon: data.weather[3].icon});
+                setEndtWeather({description: data.weather[2], temperature: data.main.temp, icon: data.weather[3].icon});
               })
             }}
           />
